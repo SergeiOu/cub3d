@@ -11,4 +11,5 @@ void	setup_hooks(t_game *game)
 {
 	mlx_hook(game->win, 17, 1L << 17, close_game, game);
 	mlx_hook(game->win, 2, 1L << 0, key_press, game);
+	mlx_hook(game->win, 12, 1L << 15, expose_hook, game);
 }

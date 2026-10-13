@@ -118,6 +118,10 @@ int				handle_line(char *line, t_line_type type,
 
 void			set_player(t_config *config, int y, int x);
 
+int				rgb_to_int(t_color color);
+void			put_pixel(t_img *img, int x, int y, int color);
+void			render_frame(t_game *game);
+int				expose_hook(t_game *game);
 int				init_window(t_game *game);
 void			destroy_window(t_game *game);
 int				close_game(t_game *game);

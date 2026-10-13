@@ -42,6 +42,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	setup_hooks(&game);
+	render_frame(&game);
 	mlx_loop(game.mlx);
 	return (0);
 }

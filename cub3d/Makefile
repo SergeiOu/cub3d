@@ -39,6 +39,8 @@ SRC = \
 	src/parsing/config_validation.c \
 	src/parsing/store_map.c \
 	src/parsing/validate_map.c \
+	src/render/render.c \
+	src/render/draw_utils.c \
 	src/window/window.c \
 	src/window/events.c \
 	get_next_line/get_next_line.c \
