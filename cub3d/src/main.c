@@ -34,9 +34,9 @@ int	main(int argc, char **argv)
 		free_config(&game.config);
 		return (1);
 	}
-	if (!init_window(&game))
+	if (!init_window(&game) || !load_textures(&game))
 	{
-		write(2, "Error\nWindow initialization failed\n", 35);
+		write(2, "Error\nWindow or texture initialization failed\n", 46);
 		destroy_window(&game);
 		free_config(&game.config);
 		return (1);

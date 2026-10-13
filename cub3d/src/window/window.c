@@ -20,6 +20,7 @@ int	init_window(t_game *game)
 
 void	destroy_window(t_game *game)
 {
+	destroy_textures(game);
 	if (game->img.ptr)
 		mlx_destroy_image(game->mlx, game->img.ptr);
 	if (game->win)

@@ -24,6 +24,11 @@
 # define WIN_H 720
 # define KEY_ESC 65307
 
+# define TEX_NORTH 0
+# define TEX_SOUTH 1
+# define TEX_WEST 2
+# define TEX_EAST 3
+
 typedef enum e_line_type
 {
 	LINE_EMPTY,
@@ -82,12 +87,24 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_tex
+{
+	void	*ptr;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}	t_tex;
+
 typedef struct s_game
 {
 	t_config	config;
 	void		*mlx;
 	void		*win;
 	t_img		img;
+	t_tex		tex[4];
 }	t_game;
 
 void			init_color(t_color *color);
@@ -122,6 +139,8 @@ int				rgb_to_int(t_color color);
 void			put_pixel(t_img *img, int x, int y, int color);
 void			render_frame(t_game *game);
 int				expose_hook(t_game *game);
+int				load_textures(t_game *game);
+void			destroy_textures(t_game *game);
 int				init_window(t_game *game);
 void			destroy_window(t_game *game);
 int				close_game(t_game *game);
