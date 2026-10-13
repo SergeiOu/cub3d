@@ -24,6 +24,8 @@
 # define WIN_H 720
 # define KEY_ESC 65307
 
+# define FOV_SCALE 0.66
+
 # define TEX_NORTH 0
 # define TEX_SOUTH 1
 # define TEX_WEST 2
@@ -98,6 +100,16 @@ typedef struct s_tex
 	int		height;
 }	t_tex;
 
+typedef struct s_camera
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+}	t_camera;
+
 typedef struct s_game
 {
 	t_config	config;
@@ -105,6 +117,7 @@ typedef struct s_game
 	void		*win;
 	t_img		img;
 	t_tex		tex[4];
+	t_camera	cam;
 }	t_game;
 
 void			init_color(t_color *color);
@@ -139,6 +152,7 @@ int				rgb_to_int(t_color color);
 void			put_pixel(t_img *img, int x, int y, int color);
 void			render_frame(t_game *game);
 int				expose_hook(t_game *game);
+void			init_camera(t_game *game);
 int				load_textures(t_game *game);
 void			destroy_textures(t_game *game);
 int				init_window(t_game *game);

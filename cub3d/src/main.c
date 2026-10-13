@@ -41,6 +41,7 @@ int	main(int argc, char **argv)
 		free_config(&game.config);
 		return (1);
 	}
+	init_camera(&game);
 	setup_hooks(&game);
 	render_frame(&game);
 	mlx_loop(game.mlx);
