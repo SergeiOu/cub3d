@@ -18,6 +18,11 @@
 # include <fcntl.h>
 # include <get_next_line.h>
 # include <libft.h>
+# include <mlx.h>
+
+# define WIN_W 1280
+# define WIN_H 720
+# define KEY_ESC 65307
 
 typedef enum e_line_type
 {
@@ -68,9 +73,21 @@ typedef struct s_config
 	t_player	player;
 }	t_config;
 
+typedef struct s_img
+{
+	void	*ptr;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
 typedef struct s_game
 {
 	t_config	config;
+	void		*mlx;
+	void		*win;
+	t_img		img;
 }	t_game;
 
 void			init_color(t_color *color);
@@ -100,5 +117,11 @@ int				handle_line(char *line, t_line_type type,
 					t_config *config, t_parse_state *state);
 
 void			set_player(t_config *config, int y, int x);
+
+int				init_window(t_game *game);
+void			destroy_window(t_game *game);
+int				close_game(t_game *game);
+int				key_press(int keycode, t_game *game);
+void			setup_hooks(t_game *game);
 
 #endif

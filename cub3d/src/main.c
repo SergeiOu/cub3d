@@ -26,6 +26,7 @@ int	main(int argc, char **argv)
 		write(2, "Error\nInvalid file extension\n", 29);
 		return (1);
 	}
+	ft_bzero(&game, sizeof(t_game));
 	init_config(&game.config);
 	if (!parse_file(argv[1], &game.config))
 	{
@@ -33,6 +34,14 @@ int	main(int argc, char **argv)
 		free_config(&game.config);
 		return (1);
 	}
-	free_config(&game.config);
+	if (!init_window(&game))
+	{
+		write(2, "Error\nWindow initialization failed\n", 35);
+		destroy_window(&game);
+		free_config(&game.config);
+		return (1);
+	}
+	setup_hooks(&game);
+	mlx_loop(game.mlx);
 	return (0);
 }
