@@ -125,6 +125,8 @@ typedef struct s_ray
 	int		step_y;
 	int		side;
 	double	dist;
+	double	wall_x;
+	int		tex_x;
 	int		line_h;
 	int		start;
 	int		end;
