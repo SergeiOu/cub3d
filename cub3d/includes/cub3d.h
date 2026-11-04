@@ -19,6 +19,7 @@
 # include <get_next_line.h>
 # include <libft.h>
 # include <mlx.h>
+# include <math.h>
 
 # define WIN_W 1280
 # define WIN_H 720
@@ -110,6 +111,25 @@ typedef struct s_camera
 	double	plane_y;
 }	t_camera;
 
+typedef struct s_ray
+{
+	double	dir_x;
+	double	dir_y;
+	int		map_x;
+	int		map_y;
+	double	delta_x;
+	double	delta_y;
+	double	side_x;
+	double	side_y;
+	int		step_x;
+	int		step_y;
+	int		side;
+	double	dist;
+	int		line_h;
+	int		start;
+	int		end;
+}	t_ray;
+
 typedef struct s_game
 {
 	t_config	config;
@@ -153,6 +173,9 @@ void			put_pixel(t_img *img, int x, int y, int color);
 void			render_frame(t_game *game);
 int				expose_hook(t_game *game);
 void			init_camera(t_game *game);
+void			cast_ray(t_game *game, t_ray *ray, int x);
+int				wall_side(t_ray *ray);
+void			draw_walls(t_game *game);
 int				load_textures(t_game *game);
 void			destroy_textures(t_game *game);
 int				init_window(t_game *game);
