@@ -29,10 +29,13 @@ static int	get_map_height(char **lines, int start)
 	height = 0;
 	while (lines[start + height])
 		height++;
+	while (height > 0
+		&& identify_line(lines[start + height - 1]) == LINE_EMPTY)
+		height--;
 	return (height);
 }
 
-static int	get_map_width(char **lines, int start)
+static int	get_map_width(char **lines, int start, int height)
 {
 	int	i;
 	int	len;
@@ -40,7 +43,7 @@ static int	get_map_width(char **lines, int start)
 
 	i = start;
 	max = 0;
-	while (lines[i])
+	while (i < start + height)
 	{
 		len = map_line_len(lines[i]);
 		if (len > max)
@@ -85,6 +88,6 @@ int	store_map(char **lines, int start, t_config *config)
 	}
 	config->map[i] = NULL;
 	config->map_height = height;
-	config->map_width = get_map_width(lines, start);
+	config->map_width = get_map_width(lines, start, height);
 	return (1);
 }

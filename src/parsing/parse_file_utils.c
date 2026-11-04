@@ -44,7 +44,7 @@ static int	handle_config(char *line, t_line_type type,
 
 static int	handle_map(t_line_type type)
 {
-	if (type != LINE_MAP)
+	if (type != LINE_MAP && type != LINE_EMPTY)
 		return (0);
 	return (1);
 }

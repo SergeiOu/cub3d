@@ -47,7 +47,9 @@ static int	parse_rgb(char *line, t_color *color)
 	int	value[3];
 	int	j;
 
-	i = 1;
+	i = 0;
+	skip_spaces(line, &i);
+	i++;
 	j = 0;
 	while (j < 3)
 	{

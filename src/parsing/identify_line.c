@@ -44,23 +44,33 @@ static int	is_map_line(char *line)
 	return (has_map_char);
 }
 
+static char	*skip_indent(char *line)
+{
+	while (*line == ' ')
+		line++;
+	return (line);
+}
+
 t_line_type	identify_line(char *line)
 {
+	char	*s;
+
 	if (!line)
 		return (LINE_INVALID);
 	if (is_empty_line(line))
 		return (LINE_EMPTY);
-	if (ft_strncmp(line, "NO ", 3) == 0)
+	s = skip_indent(line);
+	if (ft_strncmp(s, "NO ", 3) == 0)
 		return (LINE_NO);
-	if (ft_strncmp(line, "SO ", 3) == 0)
+	if (ft_strncmp(s, "SO ", 3) == 0)
 		return (LINE_SO);
-	if (ft_strncmp(line, "WE ", 3) == 0)
+	if (ft_strncmp(s, "WE ", 3) == 0)
 		return (LINE_WE);
-	if (ft_strncmp(line, "EA ", 3) == 0)
+	if (ft_strncmp(s, "EA ", 3) == 0)
 		return (LINE_EA);
-	if (ft_strncmp(line, "F ", 2) == 0)
+	if (ft_strncmp(s, "F ", 2) == 0)
 		return (LINE_F);
-	if (ft_strncmp(line, "C ", 2) == 0)
+	if (ft_strncmp(s, "C ", 2) == 0)
 		return (LINE_C);
 	if (is_map_line(line))
 		return (LINE_MAP);

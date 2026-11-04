@@ -31,9 +31,23 @@ static int	parse_lines(char **lines, t_config *config,
 	return (1);
 }
 
+static int	map_has_no_gap(char **lines, int start)
+{
+	int	i;
+
+	i = start;
+	while (lines[i] && identify_line(lines[i]) != LINE_EMPTY)
+		i++;
+	while (lines[i] && identify_line(lines[i]) == LINE_EMPTY)
+		i++;
+	return (lines[i] == NULL);
+}
+
 static int	finish_parsing(char **lines, int map_start, t_config *config)
 {
 	if (!config_complete(config) || map_start == -1)
+		return (0);
+	if (!map_has_no_gap(lines, map_start))
 		return (0);
 	if (!store_map(lines, map_start, config))
 		return (0);

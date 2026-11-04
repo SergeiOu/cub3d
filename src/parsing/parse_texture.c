@@ -29,7 +29,10 @@ static int	get_path_start(char *line)
 {
 	int	i;
 
-	i = 2;
+	i = 0;
+	while (line[i] == ' ')
+		i++;
+	i += 2;
 	while (line[i] == ' ')
 		i++;
 	return (i);
@@ -45,6 +48,8 @@ static char	*extract_path(char *line)
 		return (NULL);
 	len = ft_strlen(line + start);
 	if (len > 0 && line[start + len - 1] == '\n')
+		len--;
+	while (len > 0 && line[start + len - 1] == ' ')
 		len--;
 	if (len == 0)
 		return (NULL);
