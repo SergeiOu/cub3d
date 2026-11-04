@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-static int	is_wall(t_game *game, int x, int y)
+int	is_wall(t_game *game, int x, int y)
 {
 	t_config	*cfg;
 

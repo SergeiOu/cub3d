@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	}
 	init_camera(&game);
 	setup_hooks(&game);
-	render_frame(&game);
+	mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

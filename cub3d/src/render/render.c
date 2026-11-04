@@ -35,3 +35,10 @@ int	expose_hook(t_game *game)
 	render_frame(game);
 	return (0);
 }
+
+int	game_loop(t_game *game)
+{
+	update_player(game);
+	render_frame(game);
+	return (0);
+}

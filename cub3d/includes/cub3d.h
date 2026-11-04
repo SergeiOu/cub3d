@@ -24,6 +24,16 @@
 # define WIN_W 1280
 # define WIN_H 720
 # define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+
+# define MOVE_SPEED 0.05
+# define ROT_SPEED 0.04
+# define HIT_MARGIN 0.2
 
 # define FOV_SCALE 0.66
 
@@ -132,6 +142,16 @@ typedef struct s_ray
 	int		end;
 }	t_ray;
 
+typedef struct s_keys
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
+}	t_keys;
+
 typedef struct s_game
 {
 	t_config	config;
@@ -140,6 +160,7 @@ typedef struct s_game
 	t_img		img;
 	t_tex		tex[4];
 	t_camera	cam;
+	t_keys		keys;
 }	t_game;
 
 void			init_color(t_color *color);
@@ -184,6 +205,10 @@ int				init_window(t_game *game);
 void			destroy_window(t_game *game);
 int				close_game(t_game *game);
 int				key_press(int keycode, t_game *game);
+int				key_release(int keycode, t_game *game);
+int				game_loop(t_game *game);
+int				is_wall(t_game *game, int x, int y);
+void			update_player(t_game *game);
 void			setup_hooks(t_game *game);
 
 #endif

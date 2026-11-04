@@ -40,6 +40,7 @@ SRC = \
 	src/parsing/store_map.c \
 	src/parsing/validate_map.c \
 	src/player/camera.c \
+	src/player/movement.c \
 	src/raycast/raycast.c \
 	src/render/draw_walls.c \
 	src/render/render.c \
